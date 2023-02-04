@@ -9,8 +9,7 @@
 
 ## TODOS
 1. Fetch the data from the external API. You may use `fetch`, `axios` (already installed), or something else.
-1. Implement the `SearchBar` functionality. When the user types in the search bar, show only the users whose
-name, country, or company match the user input.
+1. Implement the `SearchBar` functionality. When the user types in the search bar, show only the users whose name, country, or company match the user input.
 1. Implement a button that shows / hides the `about` paragraph for a user.
 1. Display `No results for {input}` when there are no results.
 
