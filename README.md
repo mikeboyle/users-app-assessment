@@ -11,12 +11,14 @@
 1. Fetch the data from the external API. You may use `fetch`, `axios` (already installed), or something else.
 1. Implement the `SearchBar` functionality. When the user types in the search bar, show only the users whose name, country, or company match the user input.
 1. Implement a button that shows / hides the `about` paragraph for a user.
-1. Display `No results for {input}` when there are no results.
+1. Implement an `Expand All` button
+1. Implement a `Collapse All` button
 
-### BONUS TODO:
-Create two buttons: `Expand All` and `Collapse All`. `Expand all` should expand all of the user cards, regardless of their current state. `Collapse all` should collapse (hide the about info) for all cards.
-
-**Hint**: How can you lift state up to make this happen? How would you change the data type of the lifted state? 
+### BONUS TODOS:
+- Display `No results for {input}` when there are no results.
+- Loading state
+- Error state when the API returns an error
+- Additional styling
 
 ![finished app for reference](./users-app-completed.png)
 
