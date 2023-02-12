@@ -1,0 +1,84 @@
+.loading {
+  display: grid;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  grid-template-columns: 200px 150px;
+
+  .dots {
+    width: 5em;
+    height: 5em;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-flow: row;
+
+    .dot1 {
+      width: 0.1em;
+      height: 0.1em;
+      border: 3px solid black;
+      border-radius: 100%;
+      background-color: black;
+      animation: growAndShrink infinite 2.5s;
+      @keyframes growAndShrink {
+        0% {
+          width: 0.1em;
+          height: 0.1em;
+        }
+        50% {
+          width: 1.5em;
+          height: 1.5em;
+        }
+        100% {
+          width: 0.1em;
+          height: 0.1em;
+        }
+      }
+    }
+    .dot2 {
+      width: 0.1em;
+      height: 0.1em;
+      border: 3px solid black;
+      border-radius: 100%;
+      background-color: black;
+      animation: growAndShrink infinite 2.5s 0.5s;
+      @keyframes growAndShrink {
+        0% {
+          width: 0.1em;
+          height: 0.1em;
+        }
+        50% {
+          width: 1.5em;
+          height: 1.5em;
+        }
+        100% {
+          width: 0.1em;
+          height: 0.1em;
+        }
+      }
+    }
+    .dot3 {
+      width: 0.1em;
+      height: 0.1em;
+      border: 3px solid black;
+      border-radius: 100%;
+      background-color: black;
+      animation: growAndShrink infinite 2.5s 1s;
+      @keyframes growAndShrink {
+        0% {
+          width: 0.1em;
+          height: 0.1em;
+        }
+        50% {
+          width: 1.5em;
+          height: 1.5em;
+        }
+        100% {
+          width: 0.1em;
+          height: 0.1em;
+        }
+      }
+    }
+  }
+}
