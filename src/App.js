@@ -7,13 +7,14 @@ import './App.css';
 function App() {
 
   const [ users, setUsers ] = useState([])
+  
   // TODO: Fetch data here
   useEffect(() => {
     axios.get('https://users-app-backend.onrender.com/users')
-    .then(res => {
-      console.log(res.data);
-      setUsers(res.data.data)})
+    .then(res => setUsers(res.data.data))
+    .catch(err => console.log(err))
   })
+
   return (
     <div className="App">
       <h1>Our Users</h1>
