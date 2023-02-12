@@ -13,7 +13,8 @@ function App() {
   useEffect(() => {
     axios.get('https://users-app-backend.onrender.com/users')
       .then((response) => {
-        setUsers(response.data)
+        // console.log("USE EFFECT->", response.data.data)
+        setUsers(response.data.data)
       })
       .catch((error) => console.log(error))
   }, []);
@@ -22,19 +23,18 @@ function App() {
 
   // filter the users that match the `searchInput`
   // the users data is an object
-  let filteredData = users.data;
+  let filteredData = users;
+  // console.log("users:", users)
+  
   // console.log("filteredData:", filteredData);
-
   if (searchInput){
-      filteredData = users.data.filter(user => {
-      const { name, country, company } = user;
-      const validInput = `${name} ${country} ${company}`;
-      const validInputToLowerCase = validInput.toLowerCase();
-      const searchInputToLowerCase = searchInput.toLowerCase();
-      return validInputToLowerCase.includes(searchInputToLowerCase);
+    filteredData = users.filter(user => {
+    const validInput = `${user.name} ${user.country} ${user.company}`;
+    const validInputToLowerCase = validInput.toLowerCase();
+    const searchInputToLowerCase = searchInput.toLowerCase();
+    return validInputToLowerCase.includes(searchInputToLowerCase);
     });
   }
-  
 
   return (
     <div className="App">
