@@ -33,7 +33,7 @@ function App() {
         }
         
       } catch (error) {
-        setError(error.meassage);
+        setError(error.message);
         setLoading(false);
       }
     }
@@ -47,7 +47,8 @@ function App() {
   if(searchInput) {
     dataToDisplay = users.filter(user => {
       const { name, country, company } = user;
-      return (name.toLowerCase().includes(searchInput.toLowerCase()) || country.toLowerCase().includes(searchInput.toLowerCase()) || company.toLowerCase().includes(searchInput.toLowerCase()));
+      const input = searchInput.toLowerCase();
+      return (name.toLowerCase().includes(input) || country.toLowerCase().includes(input) || company.toLowerCase().includes(input));
     })
   }
 
@@ -78,7 +79,6 @@ function App() {
     } else {
       return <Users 
       users={dataToDisplay} 
-      searchInput={searchInput} 
       expanded={expanded} 
       handleToggleExpanded={handleToggleExpanded}
     />
