@@ -2,6 +2,7 @@ import SearchBar from './components/SearchBar/SearchBar';
 import Users from './components/Users/Users';
 import './App.css';
 import { useEffect, useState } from 'react';
+import NoResult from './components/NoResult/NoResult';
 
 const API = "https://users-app-backend.onrender.com/users"
 
@@ -67,12 +68,15 @@ function App() {
       />
         <button onClick={handleExpandAll}>Expand All</button>
         <button onClick={handleCollapseAll}>Collapse All</button>
-      <Users 
-        users={dataToDisplay} 
-        searchInput={searchInput} 
-        expanded={expanded} 
-        handleToggleExpanded={handleToggleExpanded}
-      />
+      {!dataToDisplay.length ? 
+        <NoResult searchInput={searchInput} /> :
+        <Users 
+          users={dataToDisplay} 
+          searchInput={searchInput} 
+          expanded={expanded} 
+          handleToggleExpanded={handleToggleExpanded}
+        />
+      }
     </div>
   );
 }
