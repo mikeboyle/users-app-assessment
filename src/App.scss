@@ -1,0 +1,15 @@
+.App {
+  width: 60vw;
+  margin: 0 auto;
+
+  .searchBar_controls {
+    display: grid;
+    grid-template-columns: 1fr 100px 100px;
+    gap: 10px;
+    width: 95%;
+
+    button {
+      font-size: 12px;
+    }
+  }
+}
