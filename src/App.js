@@ -39,7 +39,7 @@ function App() {
   };
 
   const handleExpandAll = () => {
-    const allIds = users.map((student) => student.id);
+    const allIds = users.map((user) => user.id);
     window.localStorage.setItem("usersList", JSON.stringify(allIds));
     setExpanded(allIds);
   };
