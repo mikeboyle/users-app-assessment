@@ -1,7 +1,10 @@
+import React, { useState } from 'react'
 import './User.css';
 
 const User = ({ user }) => {
   const { about, age, company, country, name, photo } = user;
+
+  const [expanded, setExpanded ] = useState(false)
 
   return (
     <section className="User">
@@ -15,13 +18,15 @@ const User = ({ user }) => {
           <li>Country: {country}</li>
           <li>Company: {company}</li>
         </ul>
+        {expanded && 
         <div className="User__about">
           <h3>About {name.split(' ')[0]}:</h3>
           <p>{about}</p>
         </div>
+        }
       </div>
       <div className="User__controls">
-        <button>click me</button>
+        <button onClick={() => setExpanded(!expanded)}>{ expanded ? 'Show Less' : 'Show More'}</button>
       </div>
     </section>
   );
