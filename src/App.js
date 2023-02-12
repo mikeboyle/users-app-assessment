@@ -1,15 +1,24 @@
+import React, { useState, useEffect } from 'react'
 import SearchBar from './components/SearchBar/SearchBar';
 import Users from './components/Users/Users';
+import axios from 'axios';
 import './App.css';
 
 function App() {
-  // TODO: Fetch data here
 
+  const [ users, setUsers ] = useState([])
+  // TODO: Fetch data here
+  useEffect(() => {
+    axios.get('https://users-app-backend.onrender.com/users')
+    .then(res => {
+      console.log(res.data);
+      setUsers(res.data.data)})
+  })
   return (
     <div className="App">
       <h1>Our Users</h1>
       <SearchBar />
-      <Users />
+      <Users users={users}/>
     </div>
   );
 }
