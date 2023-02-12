@@ -46,8 +46,8 @@ function App() {
 
   if(searchInput) {
     dataToDisplay = users.filter(user => {
-      const { name } = user;
-      return name.toLowerCase().includes(searchInput.toLowerCase());
+      const { name, country, company } = user;
+      return (name.toLowerCase().includes(searchInput.toLowerCase()) || country.toLowerCase().includes(searchInput.toLowerCase()) || company.toLowerCase().includes(searchInput.toLowerCase()));
     })
   }
 
