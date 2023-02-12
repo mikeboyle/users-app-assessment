@@ -1,6 +1,10 @@
 import './SearchBar.css';
 
-const SearchBar = ({ searchInput, handleTextChange }) => {
+const SearchBar = ({ searchInput, setSearchInput }) => {
+
+  const handleTextChange = (e) => {
+    setSearchInput(e.target.value);
+  }
 
   return (
     <input 

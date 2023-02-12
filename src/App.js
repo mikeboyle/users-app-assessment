@@ -26,7 +26,7 @@ function App() {
   // console.log("filteredData:", filteredData);
 
   if (searchInput){
-    filteredData = filteredData.filter(user => {
+      filteredData = users.data.filter(user => {
       const { name, country, company } = user;
       const validInput = `${name} ${country} ${company}`;
       const validInputToLowerCase = validInput.toLowerCase();
@@ -35,17 +35,13 @@ function App() {
     });
   }
   
-  const handleTextChange = (e) => {
-    setSearchInput(e.target.value);
-  }
-
 
   return (
     <div className="App">
       <h1>Our Users</h1>
       <SearchBar 
         searchInput={searchInput} 
-        handleTextChange={handleTextChange}
+        setSearchInput={setSearchInput}
       />
       <Users 
         filteredData={filteredData}
