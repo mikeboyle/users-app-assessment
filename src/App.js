@@ -8,6 +8,7 @@ function App() {
   // hooks
   const [users, setUsers] = useState([]);
   const [searchInput, setSearchInput] = useState('');
+  const [expanded, setExpanded] = useState([]);
 
   // TODO: Fetch data here
   useEffect(() => {
