@@ -3,26 +3,38 @@ import Users from './components/Users/Users';
 import './App.css';
 import { useEffect, useState } from 'react';
 import NoResult from './components/NoResult/NoResult';
+import Loading from './components/Loading/Loading';
+import Error from './components/Error/Error';
 
 const API = "https://users-app-backend.onrender.com/users"
 
 function App() {
   const [ users, setUsers ] = useState([]);
   const [ searchInput, setSearchInput ] = useState("");
-  const [ expanded, setExpanded ] = useState([])
+  const [ expanded, setExpanded ] = useState([]);
+  const [ loading, setLoading ] = useState(false);
+  const [ error, setError ] = useState("");
 
   // TODO: Fetch data here
   useEffect(()=> {
     async function fetchData() {
       try {
+        setError("");
+        setLoading(true);
         const response = await fetch(`${API}`);
         const json = await response.json();
-        const { data } = json;
-
-        setUsers(data);
-
+        const { data, error } = json;
+        if(response.ok) {
+          setUsers(data);
+          setLoading(false);
+        } else {
+          setError(error);
+          setLoading(false);
+        }
+        
       } catch (error) {
-        console.log(error.message)
+        setError(error.meassage);
+        setLoading(false);
       }
     }
     fetchData();
@@ -58,6 +70,21 @@ function App() {
     setExpanded([]);
   }
 
+  const renderContent = () => {
+    if(loading) {
+      return <Loading />
+    } else if(error) {
+      return <Error error={error} />
+    } else {
+      return <Users 
+      users={dataToDisplay} 
+      searchInput={searchInput} 
+      expanded={expanded} 
+      handleToggleExpanded={handleToggleExpanded}
+    />
+    }
+  }
+
 
   return (
     <div className="App">
@@ -70,12 +97,7 @@ function App() {
         <button onClick={handleCollapseAll}>Collapse All</button>
       {!dataToDisplay.length ? 
         <NoResult searchInput={searchInput} /> :
-        <Users 
-          users={dataToDisplay} 
-          searchInput={searchInput} 
-          expanded={expanded} 
-          handleToggleExpanded={handleToggleExpanded}
-        />
+        renderContent()
       }
     </div>
   );
