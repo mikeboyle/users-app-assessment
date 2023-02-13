@@ -37,6 +37,19 @@ function App() {
     });
   }
 
+  // Expand All and Collapse All
+  const handleExpandAll = () => {
+    console.log("expand all was clicked")
+    const allUserIds = users.map((user) => user.id);
+    setExpanded(allUserIds)
+
+  }
+
+  const handleCollapseAll = () => {
+    console.log("collapse all was clicked")
+    setExpanded([]);
+  }
+
   return (
     <div className="App">
       <h1>Our Users</h1>
@@ -44,8 +57,12 @@ function App() {
         searchInput={searchInput} 
         setSearchInput={setSearchInput}
       />
+      <button onClick={handleExpandAll} >Expand All</button>
+      <button onClick={handleCollapseAll} >Collapse All</button>
       <Users 
         filteredData={filteredData}
+        expanded={expanded}
+        setExpanded={setExpanded}
       />
     </div>
   );
