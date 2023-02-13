@@ -4,6 +4,7 @@ import SearchBar from "./components/SearchBar/SearchBar";
 import Users from "./components/Users/Users";
 import Loading from "./components/loading/Loading";
 import Error from "./components/error/Error";
+import "./App.css";
 
 const API = "https://users-app-backend.onrender.com/users";
 function App() {
@@ -88,20 +89,23 @@ function App() {
 	return (
 		<div className="App">
 			<h1>Our Users</h1>
-			<SearchBar
-				searchInput={searchInput}
-				setSearchInput={setSearchInput}
-				// handleExpandAll={handleExpandAll}
-				// handleCollapseAll={handleCollapseAll}
-			/>
-			<button onClick={handleExpandAll}>Expand All</button>
-			<button onClick={handleCollapseAll}>Collapse All</button>
+			<div className="App__input">
+				<SearchBar
+					searchInput={searchInput}
+					setSearchInput={setSearchInput}
+				/>
+				<button className="button-19" onClick={handleExpandAll}>
+					Expand All
+				</button>
+				<button className="button-19" onClick={handleCollapseAll}>
+					Collapse All
+				</button>
+			</div>
 			{dataToDisplay.length ? (
 				renderContent()
 			) : (
 				<div className="users__content--center">
 					No results for {searchInput}
-					{console.log(API)}
 				</div>
 			)}
 		</div>

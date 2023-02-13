@@ -8,6 +8,7 @@ const SearchBar = ({ searchInput, setSearchInput }) => {
 
 	return (
 		<input
+			className="searchInput"
 			type="text"
 			value={searchInput}
 			placeholder="Search by name, country, or company"
