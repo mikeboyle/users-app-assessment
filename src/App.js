@@ -75,13 +75,14 @@ function App() {
   return (
     <div className="App">
       <h1>Our Users</h1>
-      <SearchBar 
-        searchInput={searchInput} 
-        setSearchInput={setSearchInput}
-      />
-      <button onClick={handleExpandAll} >Expand All</button>
-      <button onClick={handleCollapseAll} >Collapse All</button>
-      
+      <div className="inputExpandContainer">
+        <SearchBar 
+          searchInput={searchInput} 
+          setSearchInput={setSearchInput}
+        />
+        <button onClick={handleExpandAll} >Expand All</button>
+        <button onClick={handleCollapseAll} >Collapse All</button>
+      </div>
       {renderNoResults()}
       {renderContent()}
     </div>
