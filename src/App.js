@@ -14,20 +14,15 @@ function App() {
   useEffect(() => {
     axios.get('https://users-app-backend.onrender.com/users')
       .then((response) => {
-        // console.log("USE EFFECT->", response.data.data)
         setUsers(response.data.data)
       })
       .catch((error) => console.log(error))
   }, []);
 
-  // console.log("searchInput:", searchInput);
-
   // filter the users that match the `searchInput`
   // the users data is an object
   let filteredData = users;
-  // console.log("users:", users)
-  
-  // console.log("filteredData:", filteredData);
+
   if (searchInput){
     filteredData = users.filter(user => {
     const validInput = `${user.name} ${user.country} ${user.company}`;
@@ -39,14 +34,11 @@ function App() {
 
   // Expand All and Collapse All
   const handleExpandAll = () => {
-    console.log("expand all was clicked")
     const allUserIds = users.map((user) => user.id);
-    setExpanded(allUserIds)
-
+    setExpanded(allUserIds);
   }
 
   const handleCollapseAll = () => {
-    console.log("collapse all was clicked")
     setExpanded([]);
   }
 
@@ -59,11 +51,21 @@ function App() {
       />
       <button onClick={handleExpandAll} >Expand All</button>
       <button onClick={handleCollapseAll} >Collapse All</button>
-      <Users 
-        filteredData={filteredData}
-        expanded={expanded}
-        setExpanded={setExpanded}
-      />
+      {filteredData.length === 0 || searchInput.length === 0 ?
+        <div>
+          {(searchInput.length === 0) ?
+            <div>No results</div>
+            :
+            <div>No results for {searchInput}</div>
+          }
+        </div>
+        :
+        <Users 
+          filteredData={filteredData}
+          expanded={expanded}
+          setExpanded={setExpanded}
+        />
+      }
     </div>
   );
 }
