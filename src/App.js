@@ -56,18 +56,14 @@ function App() {
       return <div>Loading...</div>
     } else if (error) {
       return <div>{error}</div>
-    } else {
+    } else if (filteredData.length > 0) {
       return <Users 
           filteredData={filteredData}
           expanded={expanded}
           setExpanded={setExpanded}
         />
-    }
-  }
-
-  // if user input doesn't create filtered data, show no results message
-  const renderNoResults = () => {
-    if (searchInput.length > 0 && filteredData.length === 0) {
+    } else {
+      // if user input doesn't create filtered data, show no results message
       return <div>No results for {searchInput}</div>
     }
   }
@@ -83,7 +79,6 @@ function App() {
         <button onClick={handleExpandAll} >Expand All</button>
         <button onClick={handleCollapseAll} >Collapse All</button>
       </div>
-      {renderNoResults()}
       {renderContent()}
     </div>
   );
