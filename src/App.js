@@ -9,14 +9,23 @@ function App() {
   const [users, setUsers] = useState([]);
   const [searchInput, setSearchInput] = useState('');
   const [expanded, setExpanded] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+  const [showRenderContent, setShowRenderContent] = useState(true);
 
   // TODO: Fetch data here
   useEffect(() => {
     axios.get('https://users-app-backend.onrender.com/users')
       .then((response) => {
-        setUsers(response.data.data)
+        setUsers(response.data.data);
+        if (response){
+          setLoading(false);
+        }
       })
-      .catch((error) => console.log(error))
+      .catch((error) => {
+        setLoading(true);
+        setError("Error");
+      })
   }, []);
 
   // filter the users that match the `searchInput`
@@ -42,6 +51,29 @@ function App() {
     setExpanded([]);
   }
 
+  // if loading state or error, don't display users. Else, display users.
+  const renderContent = () => {
+    if (loading){
+      return <div>Loading...</div>
+    } else if (error) {
+      return <div>{error}</div>
+    } else {
+      return <Users 
+          filteredData={filteredData}
+          expanded={expanded}
+          setExpanded={setExpanded}
+        />
+    }
+  }
+
+  // if user input doesn't create filtered data, show no results message
+  const renderNoResults = () => {
+    if (searchInput.length > 0 && filteredData.length === 0) {
+      return <div>No results for {searchInput}</div>
+    }
+  }
+
+
   return (
     <div className="App">
       <h1>Our Users</h1>
@@ -51,21 +83,9 @@ function App() {
       />
       <button onClick={handleExpandAll} >Expand All</button>
       <button onClick={handleCollapseAll} >Collapse All</button>
-      {filteredData.length === 0 || searchInput.length === 0 ?
-        <div>
-          {(searchInput.length === 0) ?
-            <div>No results</div>
-            :
-            <div>No results for {searchInput}</div>
-          }
-        </div>
-        :
-        <Users 
-          filteredData={filteredData}
-          expanded={expanded}
-          setExpanded={setExpanded}
-        />
-      }
+      
+      {renderNoResults()}
+      {renderContent()}
     </div>
   );
 }
