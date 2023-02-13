@@ -1,0 +1,8 @@
+input {
+    border-radius: 10px;
+    border: 1px dashed blue;
+}
+
+input::placeholder {
+    text-align: center;
+}
