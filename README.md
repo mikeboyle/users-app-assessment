@@ -1,5 +1,8 @@
 # Users app practice assessment
 
+## Deployed Link
+[Users App Assessment](https://christina-ml.github.io/users-app-assessment/)
+
 ## GETTING STARTED AND SUBMITTING
 1. Fork and clone this repo
 1. run `npm install` to install, then `npm start` to start.
