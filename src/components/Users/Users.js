@@ -3,12 +3,10 @@ import "./Users.css";
 
 const Users = ({ users, setExpanded, expanded }) => {  
   const handleExpanded = (id) => {
-    let copyExpaned = expanded;
-
-    if (copyExpaned.includes(id)) {
-      setExpanded(copyExpaned.filter((userId) => userId !== id));
+    if (expanded.includes(id)) {
+      setExpanded(expanded.filter((userId) => userId !== id));
     } else {
-      setExpanded([...copyExpaned, id]);
+      setExpanded([...expanded, id]);
     }
   };
 
@@ -22,7 +20,6 @@ const Users = ({ users, setExpanded, expanded }) => {
             user={user}
             handleExpanded={handleExpanded}
             expanded={expanded}
-            setExpanded={setExpanded}
           />
         );
       })}
