@@ -11,7 +11,6 @@ function App() {
   const [expanded, setExpanded] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const [showRenderContent, setShowRenderContent] = useState(true);
 
   // TODO: Fetch data here
   useEffect(() => {
@@ -24,7 +23,7 @@ function App() {
       })
       .catch((error) => {
         setLoading(true);
-        setError("Error");
+        setError("Error fetching data from API");
       })
   }, []);
 
@@ -72,7 +71,6 @@ function App() {
       return <div>No results for {searchInput}</div>
     }
   }
-
 
   return (
     <div className="App">
