@@ -16,7 +16,7 @@ const User = ({ user, handleExpanded, expanded }) => {
           <li>Company: {company}</li>
         </ul>
 
-        {expanded.includes(id) && (
+        {expanded && (
           <div className="User__about">
             <h3>About {name.split(" ")[0]}:</h3>
             <p>{about}</p>

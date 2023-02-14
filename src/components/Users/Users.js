@@ -19,7 +19,7 @@ const Users = ({ users, setExpanded, expanded }) => {
             key={id}
             user={user}
             handleExpanded={handleExpanded}
-            expanded={expanded}
+            expanded={expanded.includes(id)}
           />
         );
       })}
